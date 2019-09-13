@@ -1,0 +1,9 @@
+
+<h1>Eliminar Entrada</h1>
+
+<p>Estas seguro de eliminar a la entrada:{{object.nombre}}?</p>
+
+<form  method="POST" action="{% url 'entry-eliminar' entry.id%}">
+  {% csrf_token %}
+  <input type="submit"  value="Yes, delete." />
+</form>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+ 
+<html lang="es">
+ 
+<head>
+ {% block extrahead %}
+ {% endblock %}
+
+ {% block head %}
+ {% endblock %}
+
+<title>{% block title %}
+ Titulo de la web {% endblock %}</title>
+
+</head>
+ 
+<body>
+    <header>
+     {% block header %}
+       <h5>este es el bloque del header</h5>
+ 	  {% endblock %}
+    </header>
+
+    <section>
+    {% block contenido %}
+    {% endblock %}
+   </section>
+    <footer>
+       {% block footer %}
+ 	   {% endblock %}
+    </footer>
+       {% block extrajs %}
+ 	   {% endblock %}
+</body>
+</html>

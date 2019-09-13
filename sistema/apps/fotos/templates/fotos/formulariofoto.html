@@ -1,0 +1,90 @@
+ {% load staticfiles %}
+{% load define_action %}<!--personalizar tags-->
+
+{% block header %}
+  <link href="{% static 'css/mi.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block contenido %}
+  <div class="modal-dialog modal-lg" id="modalTamanio">
+    <div class="modal-content" id="modalcontenido">
+      {% if object %}
+          <form enctype="multipart/form-data" role="form" class="post-form" action="{% url 'foto-actualiza' object.pk %}" method="post">
+      {% else %}
+          <form enctype="multipart/form-data" role="form" class="post-form" action="{% url 'foto-crear' %}" method="post"> 
+      {% endif %}
+
+          <div class="modal-header">
+                {% if object %}
+                  <h1 class="h3 mb-4 text-gray-800">Modifica Foto</h1>
+                {% else %}
+                  <h1 class="h3 mb-4 text-gray-800">Nueva Foto</h1>
+                {% endif %}
+                <button type="button" class="close" data-dismiss="modal">x</button>
+          </div>
+
+          <div class="modal-body">
+                {% csrf_token %}
+                               
+                    <div class="row">
+                    <!--<table border="1" >
+                        <tr><td width="65%">-->      <!-- {{ form.as_p }}-->
+                          <div class="col-lg-8 justify-content-center" >   
+                          {% include "bucle.html" %}
+                          </div>
+                          <!--</td>
+<td>-->
+                          <div class="col-lg-4 justify-content-center">   
+
+                            <img id="bla" style="position: relative;
+                            left: 50%;top: 50%;
+                            transform: translate(-50%, -50%);"
+                            width=214, height=162, class="sidebar-brand d-flex align-items-center justify-content-center" src="/{{foto.ruta}}" border="1" alt="imagen escaneada">
+                          </div>
+                    </div><!-- del div row-->
+<!--</td></tr></table>-->
+          </div>
+          <div class="modal-footer">
+                                
+                                  {% define "/foto/listar" as redirige %}
+                                  {% include "guardar.html" %}
+          </div>
+      </form>
+    </div><!--div3-->
+  </div> <!--div2-->
+
+
+  {% endblock %}<!--contenido-->
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+        <script>
+      /*
+        $(document).ready(function() {
+
+          
+
+          function readURL(input) {
+              if (input.files && input.files[0]) {
+                
+              var reader = new FileReader();
+            reader.onload = function(e) {
+                     $("#bla").attr("src", e.target.result);
+             }
+            reader.readAsDataURL(input.files[0]);
+           }
+          }
+
+          //$("#id_{{form.ruta.name}}").change(function() {//captura el change del boton que busca la imagen
+          $($("#rutaimagen").val()).change(function() {//captura el change del boton que busca la imagen
+            alert($("#rutaimagen").val());
+            alert("{{form.ruta.name}}");
+           readURL(this);
+           $("#bla").show();
+           });
+
+        });*/
+       </script>
+  
+   <script src="{% static 'js/muestraimagen.js' %}"></script>
+
+     {% endblock %}

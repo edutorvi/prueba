@@ -1,0 +1,57 @@
+ {% extends 'baseblank.html' %}
+ {% load staticfiles %}
+  {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Nuevo Usuario</h1>
+ {% endblock %}
+ {% block contenido %}
+
+<form enctype="multipart/form-data" method="POST" class="post-form">
+  {% csrf_token %}
+{% for field in form %}
+  
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-4 col-form-label" for="{{field.name}}"> {{ field.label }}</label>
+        <div class="col-md-8">
+                  {{field}}
+         {{field.errors}}
+         {{form.non_field_errors}}
+         
+        </div>
+    </div>
+  </div>
+
+{% endfor %}
+
+
+ <!-- <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-4 col-form-label" for="{{form.username.name}}">{{form.username.label}}</label>
+        <div class="col-md-8">
+          {{form.username}}
+          {{form.username.errors}}
+        </div>
+    </div>
+  </div> -->
+  
+  
+  
+
+<div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+        <button class="save btn btn-success fa fa-save " type="submit"> Guardar</button>
+        <a class="save btn btn-primary fa fa-window-close" href="{% url 'home' %}"> Cancelar</a>
+    </div>
+</div>
+</form>
+
+
+  {% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+        
+  
+  <!--<script src="{% static 'js/mi.js' %}"></script>-->
+
+ 	   {% endblock %}
+

@@ -1,0 +1,50 @@
+ {% extends 'baseblank.html' %}
+ {% load staticfiles %}
+  {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Nuevo Origen</h1>
+ {% endblock %}
+ {% block contenido %}
+
+
+<form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+   <table border="0">
+  <tr>
+    <td width="65%">      <!-- {{ form.as_p }}-->
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-4 col-form-label" for="{{form.provincia.name}}">{{form.provincia.label}}</label>
+        <div class="col-md-8">
+          {{form.provincia}}
+          {{form.provincia.errors}}
+        </div>
+    </div>
+  </div>
+  
+  
+  
+
+</div><!-- class="row"-->
+</td>
+<td></td>
+
+</tr>
+</table>
+<div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+        <button class="save btn btn-success" type="submit">Guardar</button>
+        <a class="save btn btn-primary" href="{% url 'lista_origen' %}">Cancelar</a>
+    </div>
+</div>
+</form>
+
+
+  {% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+        
+  
+  <!--<script src="{% static 'js/mi.js' %}"></script>-->
+
+ 	   {% endblock %}
+

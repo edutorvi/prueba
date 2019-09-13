@@ -1,0 +1,44 @@
+ 
+ {% load staticfiles %}
+ {% load define_action %}<!--personalizar tags-->
+  {% block header %}
+  {% if object %}
+	<h1 class="h3 mb-4 text-gray-800">Modifica Periódico</h1>
+	{% else %}
+	<h1 class="h3 mb-4 text-gray-800">Nuevo Periódico</h1>
+  {% endif %}
+      
+ {% endblock %}
+ {% block contenido %}
+
+
+{% if object %}
+	<form enctype="multipart/form-data" role="form" class="post-form" action="{% url 'periodico-actualiza' object.pk %}" method="post">
+	{% else %}
+	<form enctype="multipart/form-data" role="form" class="post-form" action="{% url 'periodico-crear' %}" method="post"> 
+{% endif %}
+   {% csrf_token %}
+   <table border="0">
+  <tr>
+    <td width="65%">      <!-- {{ form.as_p }}-->
+{% include "bucle.html" %}
+</td>
+<td><!--<img id="bla" style="display: none;" src="/{{foto.ruta}}" class="img-thumbnail" >--></td>
+
+</tr>
+</table>
+{% define "/periodico/listar" as redirige %}
+{% include "guardar.html" %}
+
+</form>
+
+
+  {% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+        
+  
+  <!--<script src="{% static 'js/mi.js' %}"></script>-->
+
+ 	   {% endblock %}
+

@@ -1,0 +1,94 @@
+{% extends 'baseblank.html' %}
+{% load staticfiles %}
+ {% block otroshead %}
+ <!-- Custom styles for this page -->
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}"/>
+ {% endblock %}
+
+ {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Expediente por Tipo</h1>
+<div class="container-fluid">
+    <div class="card-body row " >
+
+          <div class="table-responsive" style="width: 80% ">
+              <select id="lista">
+                {% for tipo in subobjetos %}
+              <option value="{{tipo.nombre}}">{{tipo.nombre}}</option>
+               {% endfor %}
+              </select>
+          </div>
+          
+          <div class="table-responsive" style=" width: 20%">
+               <button class="btn btn-primary type="button" title="Exportar PDF"id='btn1'><i class="far fa-file-pdf"></i> PDF</button>
+               <button class="btn btn-primary type="button" title="Exportar Excel" id='btn2'><i class="far fa-file-excel"></i> Excel</button>
+                 <button type="button" class="btn btn-primary" title="Imprimir reporte" id="btn-imprime"><i class="fas fa-print"> Print</i></button>
+          </div>
+      </div>
+
+</div>
+
+   
+  
+
+ {% endblock %}
+
+ {% block javascript %}
+
+
+
+{% endblock %}
+{% block contenido %}
+
+<br>
+
+<div class="container-fluid">
+	 <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+	</table>
+				         <!--<thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Año</th>
+                      <th>&nbsp</th>
+                      <th>&nbsp</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  	<th>&nbsp</th>
+                      <th>&nbsp</th>
+                      <th>&nbsp</th>
+                      <th>&nbsp</th>
+                  </tfoot>
+	
+	{% for foto in objetos %}
+	<tr>
+		<td> {{foto.nombre}} </td>
+		<td> {{foto.anio}} </td>
+		<td> <a href="{% url 'foto-actualiza' foto.id%}">modificar</a> </td>
+		<td> <a href="{% url 'foto-eliminar' foto.id%}">eliminar</a> </td>
+
+	</tr>
+	 
+	 {% endfor %}
+	</table>-->
+	</div></div></div></div>
+		<br>  
+  <!--<a  href="{% url 'reportepdf' 'iglesias' %}">PDF</a>-->
+	
+
+
+{% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+ <!-- <script src="{% static 'js/demo/datatables-demo.js' %}"></script>-->
+  <script src="{% static 'js/tipos.js' %}"></script>
+
+ 	   {% endblock %}

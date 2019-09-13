@@ -1,0 +1,62 @@
+{% extends 'baseblank.html' %}
+ {% load staticfiles %}
+  {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Modifica Ejemplar de Periódico</h1>
+ {% endblock %}
+ {% block contenido %}
+
+
+<form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+        <!-- {{ form.as_p }} -->
+<table border="0">
+  <tr>
+    <td width="65%">
+{% include "bucle.html" %}
+</td>
+<!--<td><img  id="bla" src="{% static 'c:\st.jpg' %}" class="img-thumbnail" alt="{{foto.ruta}}"></td>-->
+<td><!--<img id="bla" src="/{{ejemplar.ruta}}" class="img-thumbnail" alt="{% static 'images/catedral.jpg' %}">-->
+<img id="bla" src="/{{ejemplar.ruta}}" border="1" alt="ejemplar escaneado" width="400" height="300">
+</td>
+
+</tr>
+</table>
+{% include "actualizar.html" %}        
+</form>
+
+  {% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+       <script>
+        $(document).ready(function() {
+
+          
+
+          function readURL(input) {
+              if (input.files && input.files[0]) {
+                
+              var reader = new FileReader();
+            reader.onload = function(e) {
+                     $("#bla").attr("src", e.target.result);
+             }
+            reader.readAsDataURL(input.files[0]);
+           }
+          }
+
+          $("#id_{{form.ruta.name}}").change(function() {
+           readURL(this);
+           
+           });
+
+        });
+       </script>
+  
+   <script src="{% static 'js/fechas.js' %}" type="text/javascript"></script>
+  <!--<script src="{% static 'js/foto.js' %}"></script>-->
+
+
+ 	   {% endblock %}
+
+
+
+
+

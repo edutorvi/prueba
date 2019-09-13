@@ -1,0 +1,82 @@
+{% extends 'baseblank.html' %}
+{% load staticfiles %}
+{% load define_action %}<!--personalizar tags-->
+ {% block otroshead %}
+ <!-- Custom styles for this page -->
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}"/>
+ {% endblock %}
+
+ {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Listado de Tipos de Fotos</h1>
+      
+
+
+ {% endblock %}
+
+ {% block javascript %}
+
+
+
+{% endblock %}
+{% block contenido %}
+
+
+
+<div class="container-fluid">
+	 <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+	
+				   <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Serie</th>
+                      
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  	<th>&nbsp</th>
+                      <th>&nbsp</th>
+                   
+                      <th>&nbsp</th>
+                  </tfoot>
+	
+	{% for foto in object_list %}
+	<tr>
+		<td> {{foto.nombre}} </td>
+		<td> {{foto.serie}} </td>
+    {% define "TIPO FOTO" as modelosolo %}
+    {% url 'tipofoto-actualiza' foto.id  as edita %}
+    {% url 'tipofoto-eliminar' foto.id  as elimina %}
+    {% include "acciones.html" %}
+		
+		
+
+	</tr>
+	 
+	 {% endfor %}
+	</table>
+	</div></div></div></div>
+		<br>  
+    {% url 'tipofoto-crear' as crea %}
+    {% define "NUEVO TIPO FOTO" as modelo %}
+    {% include "nuevo.html" %}  
+	
+	
+
+{% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+  <!--<script src="{% static 'js/tipos.js' %}"></script>-->
+   <script src="{% static 'js/vermodal.js' %}"></script>
+
+ 	   {% endblock %}

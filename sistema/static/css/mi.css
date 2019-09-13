@@ -1,0 +1,7 @@
+#modalTamanio{
+      width: 100% !important;
+      /*background: red;*/
+    }
+#modalcontenido{
+      border-radius: 15px;
+    }

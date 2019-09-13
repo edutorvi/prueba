@@ -1,0 +1,32 @@
+{% extends 'baseblank.html' %}
+ {% load staticfiles %}
+  {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Modifica TipoFoto</h1>
+ {% endblock %}
+ {% block contenido %}
+
+<form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+        <!-- {{ form.as_p }} -->
+<table border="0">
+  <tr>
+    <td width="65%">
+
+{% include "bucle.html" %}
+</td>
+<!--<td><img  id="bla" src="{% static 'c:\st.jpg' %}" class="img-thumbnail" alt="{{foto.ruta}}"></td>-->
+<td></td>
+
+</tr>
+</table>
+{% include "actualizar.html" %}
+        
+</form>
+
+  {% endblock %}
+  {% block otrosjs %}
+  {% endblock %}
+
+
+
+
+

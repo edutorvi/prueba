@@ -1,0 +1,39 @@
+{% load staticfiles %}
+{% load define_action %}<!--personalizar tags-->
+
+{% block header %}
+  <link href="{% static 'css/mi.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block contenido %}
+  <div class="modal-dialog modal-lg" id="modalTamanio">
+    <div class="modal-content" id="modalcontenido">
+    
+          <form enctype="multipart/form-data" role="form" class="post-form" action="{% url 'tipofoto-eliminar' object.pk %}" method="post">
+     
+
+          <div class="modal-header">
+               
+                  <h1 class="h3 mb-4 text-gray-800">Elimina Tipo Foto</h1>
+                  <button type="button" class="close" data-dismiss="modal">x</button>
+          </div>
+
+          <div class="modal-body">
+                {% csrf_token %}
+                               
+                    <p>Estas seguro de eliminar el tipo de foto llamado: {{object.nombre}}?</p>
+
+          </div>
+          <div class="modal-footer">
+                                {% include "borrar.html" %}
+          </div>
+      </form>
+    </div><!--div3-->
+  </div> <!--div2-->
+  {% endblock %}<!--contenido-->
+
+  {% block otrosjs %}
+  {% endblock %}
+
+
+

@@ -1,0 +1,123 @@
+ {% extends 'baseblank.html' %}
+ {% load staticfiles %}
+  {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Nueva Foto</h1>
+ {% endblock %}
+ {% block contenido %}
+
+
+<form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+   <table border="0">
+  <tr>
+    <td width="65%">      <!-- {{ form.as_p }}-->
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-3 col-form-label" for="{{form.tipofoto.name}}">{{form.tipofoto.label}}</label>
+        <div class="col-md-8">
+          {{form.tipofoto}}
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-3 col-form-label" for="{{form.procedencia.name}}">{{form.procedencia.label}}</label>
+        <div class="col-md-8">
+          {{form.procedencia}}
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-3 col-form-label" for="{{form.nombre.name}}">{{form.nombre.label}}</label>
+        <div class="col-md-8">
+          {{form.nombre}}
+        </div>
+    </div>
+  </div>
+  
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-3 col-form-label" for="{{form.descripcion.name}}">{{form.descripcion.label}}</label>
+        <div class="col-md-8">
+          {{form.descripcion}}
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-3 col-form-label" for="{{form.anio.name}}">{{form.anio.label}}</label>
+        <div class="col-md-8">
+          {{form.anio}}
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-3 col-form-label" for="{{form.obs.name}}">{{form.obs.label}}</label>
+        <div class="col-md-8">
+          {{form.obs}}
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <div class="form-group row" id="divpat">
+      <label class="col-md-3 col-form-label" for="id_{{form.ruta.name}}">{{form.ruta.label}}</label>
+        <div class="col-md-8">
+          {{form.ruta}}
+        </div>
+    </div>
+  </div>
+
+
+</div><!-- class="row"-->
+</td>
+<td><img id="bla" style="display: none;" src="/{{foto.ruta}}" class="img-thumbnail" ></td>
+
+</tr>
+</table>
+<div class="col-md-8 col-md-offset-2">
+    <div class="form-group">
+        <button class="save btn btn-success" type="submit">Guardar</button>
+        <a class="save btn btn-primary" href="{% url 'listar' %}">Cancelar</a>
+    </div>
+</div>
+</form>
+
+
+  {% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+        <script>
+        $(document).ready(function() {
+
+          
+
+          function readURL(input) {
+              if (input.files && input.files[0]) {
+                
+              var reader = new FileReader();
+            reader.onload = function(e) {
+                     $("#bla").attr("src", e.target.result);
+             }
+            reader.readAsDataURL(input.files[0]);
+           }
+          }
+
+          $("#id_{{form.ruta.name}}").change(function() {//captura el change del boton que busca la imagen
+           readURL(this);
+           $("#bla").show();
+           });
+
+        });
+       </script>
+  
+  <!--<script src="{% static 'js/mi.js' %}"></script>-->
+
+ 	   {% endblock %}
+

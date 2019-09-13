@@ -1,0 +1,83 @@
+{% extends 'baseblank.html' %}
+{% load staticfiles %}
+ {% block otroshead %}
+ <!-- Custom styles for this page <link rel="stylesheet" type="text/css" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}"/>-->
+  
+  
+ {% endblock %}
+
+ {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Reporte de Entradas</h1>
+ {% endblock %}
+{% block contenido %}
+<div class="row">
+      <div class="col-xs-3">
+      <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Fecha Inicio</span>
+          <input id="text-finicio" type="text" class="form-control">
+       </div>
+      </div>
+      
+      <div class="col-xs-3">
+      <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Fecha Fin</span>
+          <input id="text-ffin" type="text" class="form-control" >
+       </div>
+      </div>
+      <div class="col-xs-3">
+      <button type="button" class="btn btn-success" title="Ver reporte" id="btn-verrecep"><i class='fa fa-eye'></i> VER</button>
+      <button type="button" class="btn btn-primary" title="Generar excel" id="btn-recepexcel"><i class='fa fa-file-excel-o'></i> </button>
+      <button type="button" class="btn btn-primary" title="Generar pdf" id="btn-receppdf"><i class='fa fa-file-pdf-o'></i> </button>
+      <button type="button" class="btn btn-primary" title="Imprimir reporte" id="btn-imprime"><i class='glyphicon glyphicon-print'></i></button>
+      </div>
+      
+    </div>
+   
+    <div class="row" id="rptarecep">
+    </div>
+
+<div class="container-fluid">
+	 <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+	
+				   <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>anio</th>
+                      <th>&nbsp</th>
+                      <th>&nbsp</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  	<th>&nbsp</th>
+                      <th>&nbsp</th>
+                      <th>&nbsp</th>
+                      <th>&nbsp</th>
+                  </tfoot>
+	
+	{% for foto in objetos %}
+	<tr>
+		<td> {{foto.nombre}} </td>
+		<td> {{foto.anio}} </td>
+		<td> <a href="{% url 'foto-actualiza' foto.id%}">modificar</a> </td>
+		<td> <a href="{% url 'foto-eliminar' foto.id%}">eliminar</a> </td>
+
+	</tr>
+	 
+	 {% endfor %}
+	</table>
+	</div></div></div></div>
+		<br>
+	<a href="{% url 'foto-crear' %}">INGRESA Foto</a>
+	
+{% endblock %}
+  {% block otrosjs %}
+    <script src="{% static 'js/rep_tramita.js' %}" type="text/javascript"></script>
+       <!-- Page level plugins <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>-->
+  
+  
+
+ 	   {% endblock %}

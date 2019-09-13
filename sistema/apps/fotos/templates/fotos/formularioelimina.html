@@ -1,0 +1,25 @@
+{% extends 'baseblank.html' %}
+ {% load staticfiles %}
+  {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Eliminar Foto</h1>
+ {% endblock %}
+ {% block contenido %}
+
+<p>Estas seguro de eliminar la foto: {{object.nombre}}?</p>
+
+    <form method="POST" class="post-form">{% csrf_token %}
+        <!--{{ form.as_p }} -->  <!-- el formulario para eliminar no tiene nada -->
+        <button type="submit" class="save btn btn-danger">Si, Borrar</button>
+        <a class="save btn btn-primary" href="{% url 'listar' %}">No, Cancelar</a>
+    </form>
+
+  {% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+  
+  <script src="{% static 'js/mi.js' %}"></script>
+
+ 	   {% endblock %}
+
+
+

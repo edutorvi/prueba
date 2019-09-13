@@ -1,0 +1,55 @@
+{% extends 'basecero.html' %}
+{% load staticfiles %}
+ {% block otroshead %}
+
+ {% endblock %}
+
+ {% block header %}
+    <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                  </div>
+ {% endblock %}
+
+
+{% block contenido %}
+   <form class="user" method="post">
+                     {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" name="username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingrese Usuario...">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Ingrese Clave">
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Entrar">
+                      
+                    </a>
+                    <hr>
+                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Login with Google
+                    </a>
+                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                    </a>
+                  </form>
+
+                                    
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="{% url 'password_reset'%}">¿Olvidó su Contraseña?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="{% url 'usuario-crear'%}">Crear una Cuenta!</a>
+                  </div>
+
+
+{% endblock %}
+  {% block otrosjs %}
+
+
+     {% endblock %}

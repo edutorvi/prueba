@@ -1,0 +1,73 @@
+{% extends 'baseblank.html' %}
+{% load staticfiles %}
+ {% block otroshead %}
+ <!-- Custom styles for this page -->
+  
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}"/>
+ {% endblock %}
+
+ {% block header %}
+      <h1 class="h3 mb-4 text-gray-800">Listado de Origenes de Periódicos</h1>
+      
+
+
+ {% endblock %}
+
+ {% block javascript %}
+
+
+
+{% endblock %}
+{% block contenido %}
+
+
+
+<div class="container-fluid">
+	 <div class="card shadow mb-4">
+            
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
+	
+				   <thead>
+                    <tr>
+                      <th>Provincia</th>
+                     
+                      
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  	<th>&nbsp</th>
+                      
+                   
+                      <th>&nbsp</th>
+                  </tfoot>
+	
+	{% for foto in object_list %}
+	<tr>
+		<td> {{foto.provincia}} </td>
+		
+		<td> <a href="{% url 'origen-actualiza' foto.id%}">modificar</a> / <a href="{% url 'origen-eliminar' foto.id%}">eliminar</a> </td>
+		
+
+	</tr>
+	 
+	 {% endfor %}
+	</table>
+	</div></div></div></div>
+		<br>  
+	<a class="save btn btn-link" href="{% url 'origen-crear' %}">INGRESA NUEVO ORIGEN</a>
+	
+
+{% endblock %}
+  {% block otrosjs %}
+       <!-- Page level plugins -->
+  <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+  <!--<script src="{% static 'js/tipos.js' %}"></script>-->
+
+ 	   {% endblock %}

@@ -1,0 +1,54 @@
+{% load staticfiles %}
+{% load define_action %}<!--personalizar tags-->
+
+{% block header %}
+  <link href="{% static 'css/mi.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block contenido %}
+  <div class="modal-dialog modal-lg" id="modalTamanio">
+    <div class="modal-content" id="modalcontenido">
+      {% if object %}
+          <form enctype="multipart/form-data" role="form" class="post-form" action="{% url 'serie-actualiza' object.pk %}" method="post">
+      {% else %}
+          <form id="FORM-ID" enctype="multipart/form-data" role="form" class="post-form" action="{% url 'serie-crear' %}" method="post"> 
+      {% endif %}
+
+          <div class="modal-header">
+                {% if object %}
+                  <h1 class="h3 mb-4 text-gray-800">Modifica Serie de Expediente Histórico</h1>
+                {% else %}
+                  <h1 class="h3 mb-4 text-gray-800">Nueva Serie de Expediente Histórico</h1>
+                {% endif %}
+                <button type="button" class="close" data-dismiss="modal">x</button>
+          </div>
+
+          <div class="modal-body">
+                {% csrf_token %}
+                               
+                    <div class="row">
+                         <div class="col-lg-8 justify-content-center" >   
+                          {% include "bucle.html" %}
+                          </div>
+                          <div class="col-lg-4 justify-content-center">   
+                        
+                          </div>
+                    </div>
+          </div>
+          <div class="modal-footer">
+                                
+                                  {% define "/serie/listar" as redirige %}
+								  {% include "guardar.html" %}
+          </div>
+      </form>
+     
+       <button type="button" class="btn btn-success" title="Ver reporte" id="btn-imprime"><i class='fa fa-eye'></i> VER</button>
+    </div><!--div3-->
+  </div> <!--div2-->
+
+  {% endblock %}<!--contenido-->
+  
+  {% block otrosjs %}
+    <script src="{% static 'js/muestraimagen.js' %}"></script>
+      <!-- <script src="{% static 'js/vermodal.js' %}"></script>-->
+  {% endblock %}
